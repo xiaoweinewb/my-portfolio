@@ -1,0 +1,20 @@
+[
+  {
+    "src": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+    "cover": "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=400",
+    "title": "城市黄昏",
+    "meta": "原创单曲 · 2024"
+  },
+  {
+    "src": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
+    "cover": "https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=400",
+    "title": "星空下的独白",
+    "meta": "原创 EP · 2023"
+  },
+  {
+    "src": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3",
+    "cover": "https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?w=400",
+    "title": "时光旅人",
+    "meta": "个人专辑 · 2023"
+  }
+]

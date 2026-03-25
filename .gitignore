@@ -1,0 +1,27 @@
+# macOS
+.DS_Store
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Local env
+.env
+
+# Logs
+*.log
+
+# Node (if used)
+node_modules/
+
+# Thumbnails for macOS
+.AppleDouble
+.LSOverride
+
+# Web portfolio - keep all assets in assets/
+# but ignore large video/audio files that could be in assets/
+# (uncomment if you want to ignore large media)
+# assets/videos/
+# assets/music/

@@ -188,6 +188,64 @@ async function loadData(type) {
     }
 }
 
+// ==================== Hero Section ====================
+function renderHero(siteData) {
+    const container = document.getElementById('heroContent');
+    if (!container || !siteData.hero) return;
+
+    const hero = siteData.hero;
+    container.innerHTML = `
+        <p class="hero-subtitle">${hero.subtitle}</p>
+        <h1 class="hero-title">${hero.title}</h1>
+        <p class="hero-description">${hero.description}</p>
+        <div class="hero-cta">
+            <a href="${hero.ctaPrimary.link}" class="btn btn-primary">${hero.ctaPrimary.text}</a>
+            <a href="${hero.ctaSecondary.link}" class="btn btn-secondary">${hero.ctaSecondary.text}</a>
+        </div>
+    `;
+}
+
+// ==================== About Section ====================
+function renderAbout(siteData) {
+    if (!siteData.about) return;
+
+    const about = siteData.about;
+
+    // Render gallery
+    const galleryContainer = document.getElementById('galleryContainer');
+    if (galleryContainer) {
+        galleryContainer.innerHTML = about.gallery.map((img, index) => `
+            <img src="${img.src}" alt="${img.alt}" class="gallery-photo ${index === 0 ? 'active' : ''}">
+        `).join('');
+    }
+
+    // Render about content
+    const aboutContent = document.getElementById('aboutContent');
+    if (aboutContent) {
+        const socialIcons = {
+            wechat: `<path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 0 1 .213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 0 0 .167-.054l1.903-1.114a.864.864 0 0 1 .717-.098 10.16 10.16 0 0 0 2.837.403c.276 0 .543-.027.811-.05-.857-2.578.157-4.972 1.932-6.446 1.703-1.415 3.882-1.98 5.853-1.838-.576-3.583-4.196-6.348-8.596-6.348zM5.785 5.991c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 0 1-1.162 1.178A1.17 1.17 0 0 1 4.623 7.17c0-.651.52-1.18 1.162-1.18zm5.813 0c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 0 1-1.162 1.178 1.17 1.17 0 0 1-1.162-1.178c0-.651.52-1.18 1.162-1.18zm5.34 2.867c-1.797-.052-3.746.512-5.28 1.786-1.72 1.428-2.687 3.72-1.78 6.22.942 2.453 3.666 4.229 6.884 4.229.826 0 1.622-.12 2.361-.336a.722.722 0 0 1 .598.082l1.584.926a.272.272 0 0 0 .14.047c.134 0 .24-.111.24-.247 0-.06-.023-.12-.038-.177l-.327-1.233a.582.582 0 0 1-.023-.156.49.49 0 0 1 .201-.398C23.024 18.48 24 16.82 24 14.98c0-3.21-2.931-5.837-6.656-6.088V8.89c-.135-.01-.27-.027-.407-.03zm-2.53 3.274c.535 0 .969.44.969.982a.976.976 0 0 1-.969.983.976.976 0 0 1-.969-.983c0-.542.434-.982.969-.982zm4.844 0c.535 0 .969.44.969.982a.976.976 0 0 1-.969.983.976.976 0 0 1-.969-.983c0-.542.434-.982.969-.982z"/>`,
+            douyin: `<path d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>`
+        };
+
+        const socialLinksHtml = about.socialLinks.map(link => `
+            <a href="${link.url}" class="social-link" title="${link.title}" data-qrcode="${link.qrcode || ''}" data-name="${link.title}">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    ${socialIcons[link.icon] || ''}
+                </svg>
+            </a>
+        `).join('');
+
+        aboutContent.innerHTML = `
+            <div class="section-header">
+                <span class="section-tag">About</span>
+                <h2 class="section-title">关于我</h2>
+            </div>
+            ${about.text.map(t => `<p class="about-text">${t}</p>`).join('')}
+            <div class="about-links">${socialLinksHtml}</div>
+        `;
+    }
+}
+
 // ==================== Render Functions ====================
 function renderPhotos(photos) {
     const container = document.getElementById('photoGrid');
@@ -261,8 +319,12 @@ function renderWritings(writings) {
     const container = document.getElementById('writingsList');
     if (!container) return;
 
+    // Store writings data globally for later use
+    writingsData.length = 0;
+    writings.forEach(w => writingsData.push(w));
+
     container.innerHTML = writings.map((writing, index) => `
-        <article class="writing-card fade-in" data-index="${index}">
+        <article class="writing-card fade-in" data-index="${index}" data-md="${writing.md || ''}">
             <div class="writing-image">
                 <img src="${writing.image}" alt="${writing.title}">
             </div>
@@ -270,7 +332,7 @@ function renderWritings(writings) {
                 <span class="writing-date">${writing.date}</span>
                 <h3>${writing.title}</h3>
                 <p>${writing.excerpt}</p>
-                <a href="#" class="reading-link">继续阅读</a>
+                <span class="reading-link">继续阅读</span>
             </div>
         </article>
     `).join('');
@@ -326,6 +388,18 @@ const videoModal = document.getElementById('videoModal');
 const modalVideo = document.getElementById('modalVideo');
 const modalClose = document.querySelector('.modal-close');
 
+// Writing Modal
+const writingModal = document.getElementById('writingModal');
+const writingModalTitle = document.getElementById('writingModalTitle');
+const writingModalArticle = document.getElementById('writingModalArticle');
+const writingModalClose = document.querySelector('.writing-modal-close');
+
+// Social Modal
+const socialModal = document.getElementById('socialModal');
+const socialModalTitle = document.getElementById('socialModalTitle');
+const socialModalQRCode = document.getElementById('socialModalQRCode');
+const socialModalClose = document.querySelector('.social-modal-close');
+
 // Audio Player
 const audioElement = document.getElementById('audioElement');
 const playBtn = document.getElementById('playBtn');
@@ -342,6 +416,7 @@ const playerTitle = document.getElementById('playerTitle');
 const playerArtist = document.getElementById('playerArtist');
 
 const tracks = [];
+const writingsData = [];
 
 // ==================== Navbar ====================
 window.addEventListener('scroll', () => {
@@ -632,15 +707,134 @@ function initPhotoGallery() {
     });
 }
 
+// ==================== Writing Modal ====================
+async function openWritingModal(index) {
+    const writing = writingsData[index];
+    if (!writing) {
+        console.error('Writing not found at index:', index);
+        return;
+    }
+
+    writingModalTitle.textContent = writing.title;
+    writingModalArticle.innerHTML = '<p style="text-align:center;color:rgba(255,255,255,0.5);">加载中...</p>';
+
+    writingModal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    console.log('Modal opened for:', writing.title);
+
+    // Scroll to top of modal
+    const modalBody = document.getElementById('writingModalBody');
+    if (modalBody) modalBody.scrollTop = 0;
+
+    // Load MD file if exists
+    if (writing.md) {
+        try {
+            const res = await fetch(writing.md);
+            if (res.ok) {
+                const mdContent = await res.text();
+                // Parse markdown using marked.js if available
+                if (typeof marked !== 'undefined') {
+                    writingModalArticle.innerHTML = marked.parse(mdContent);
+                } else {
+                    // Fallback: show plain text
+                    writingModalArticle.innerHTML = '<pre>' + mdContent + '</pre>';
+                }
+            } else {
+                writingModalArticle.innerHTML = '<p>无法加载文章内容</p>';
+            }
+        } catch (e) {
+            console.error('Error loading MD:', e);
+            writingModalArticle.innerHTML = '<p>加载失败，请重试</p>';
+        }
+    } else {
+        writingModalArticle.innerHTML = `<p>${writing.excerpt || '暂无内容'}</p>`;
+    }
+}
+
+function closeWritingModal() {
+    writingModal.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+function initWritingHandlers() {
+    // Use event delegation on the writings container
+    const writingsList = document.getElementById('writingsList');
+    if (writingsList) {
+        writingsList.addEventListener('click', (e) => {
+            const card = e.target.closest('.writing-card');
+            if (card) {
+                const index = parseInt(card.dataset.index);
+                console.log('Writing card clicked, index:', index);
+                openWritingModal(index);
+            }
+        });
+    }
+
+    writingModalClose.addEventListener('click', closeWritingModal);
+
+    const backdrop = writingModal.querySelector('.writing-modal-backdrop');
+    if (backdrop) {
+        backdrop.addEventListener('click', closeWritingModal);
+    }
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && writingModal.classList.contains('active')) {
+            closeWritingModal();
+        }
+    });
+}
+
+// ==================== Social Modal ====================
+function openSocialModal(title, qrcode) {
+    socialModalTitle.textContent = title;
+    socialModalQRCode.src = qrcode;
+    socialModalQRCode.alt = title + '二维码';
+    socialModal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeSocialModal() {
+    socialModal.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+function initSocialHandlers() {
+    document.addEventListener('click', (e) => {
+        const link = e.target.closest('.social-link');
+        if (link && link.dataset.qrcode) {
+            e.preventDefault();
+            openSocialModal(link.dataset.name, link.dataset.qrcode);
+        }
+    });
+
+    socialModalClose.addEventListener('click', closeSocialModal);
+
+    const backdrop = socialModal.querySelector('.social-modal-backdrop');
+    if (backdrop) {
+        backdrop.addEventListener('click', closeSocialModal);
+    }
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && socialModal.classList.contains('active')) {
+            closeSocialModal();
+        }
+    });
+}
+
 // ==================== Initialize ====================
 async function init() {
     // Load all data from JSON
-    const [photos, videos, music, writings] = await Promise.all([
+    const [site, photos, videos, music, writings] = await Promise.all([
+        loadData('site'),
         loadData('photos'),
         loadData('videos'),
         loadData('music'),
         loadData('writings')
     ]);
+
+    // Render site-wide content (Hero and About)
+    renderHero(site);
+    renderAbout(site);
 
     // Render content
     renderPhotos(photos);
@@ -667,6 +861,8 @@ async function init() {
     initLightboxHandlers();
     initVideoHandlers();
     initMusicHandlers();
+    initWritingHandlers();
+    initSocialHandlers();
 
     // Start starfield animation
     createStarfield();

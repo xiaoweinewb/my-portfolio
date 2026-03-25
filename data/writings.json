@@ -3,18 +3,21 @@
     "image": "https://images.unsplash.com/photo-1457369804613-52c61a468e7d?w=400",
     "date": "2024年3月15日",
     "title": "在路上的意义",
-    "excerpt": "旅行不只是为了到达目的地，更是在路上遇见那个未知的自己。每一次出发，都是一次重新认识世界的机会..."
+    "excerpt": "旅行不只是为了到达目的地，更是在路上遇见那个未知的自己。每一次出发，都是一次重新认识世界的机会...",
+    "md": "assets/writings/01-on-the-road.md"
   },
   {
     "image": "https://images.unsplash.com/photo-1485546246426-74dc88dec4d9?w=400",
     "date": "2024年2月20日",
     "title": "摄影的第三年",
-    "excerpt": "从最初的随手记录，到如今的有意识创作。摄影教会我的，不仅是技术，更是如何用不同的视角看待这个世界..."
+    "excerpt": "从最初的随手记录，到如今的有意识创作。摄影教会我的，不仅是技术，更是如何用不同的视角看待这个世界...",
+    "md": "assets/writings/02-third-year-photography.md"
   },
   {
     "image": "https://images.unsplash.com/photo-1519681393784-d120267933ba?w=400",
     "date": "2024年1月10日",
     "title": "星空摄影指南",
-    "excerpt": "拍摄星空需要耐心、时机和一点点运气。这是我多次拍摄后总结的一些经验和技巧，希望对你有帮助..."
+    "excerpt": "拍摄星空需要耐心、时机和一点点运气。这是我多次拍摄后总结的一些经验和技巧，希望对你有帮助...",
+    "md": "assets/writings/03-starry-sky-guide.md"
   }
 ]

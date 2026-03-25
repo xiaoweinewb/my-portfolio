@@ -10,16 +10,19 @@ my-portfolio/
 ├── css/
 │   └── styles.css      # 样式文件
 ├── js/
-│   └── script.js       # 交互脚本
+│   ├── script.js       # 交互脚本
+│   └── marked.min.js   # Markdown 解析库
 ├── data/               # 内容配置文件
+│   ├── site.json       # 网站通用配置（Hero、About）
 │   ├── photos.json     # 摄影作品配置
 │   ├── videos.json     # 视频作品配置
 │   ├── music.json      # 音乐作品配置
 │   └── writings.json   # 文字记录配置
-└── assets/             # 本地资源文件夹（可选）
+└── assets/             # 本地资源文件夹
     ├── photos/         # 本地图片
     ├── videos/         # 本地视频
-    └── music/          # 本地音频
+    ├── music/          # 本地音频
+    └── writings/       # Markdown 文章文件
 ```
 
 ## 功能特点
@@ -27,9 +30,10 @@ my-portfolio/
 - **摄影作品** - 瀑布流展示，灯箱浏览
 - **视频创作** - 视频卡片，模态框播放
 - **音乐创作** - 自定义音频播放器
-- **文字记录** - 博客文章列表
+- **文字记录** - Markdown 文章预览（毛玻璃效果）
+- **Hero & About** - 可配置的网站通用内容
 - **响应式设计** - 适配桌面和移动设备
-- **可扩展内容** - 通过 JSON 配置管理作品
+- **可扩展内容** - 通过 JSON 配置管理所有内容
 
 ## 使用方法
 
@@ -49,6 +53,32 @@ npx serve .
 ## 自定义内容
 
 所有内容通过 `data/` 文件夹下的 JSON 文件管理，修改后刷新页面即可更新。
+
+### 网站通用配置 (data/site.json)
+
+```json
+{
+  "hero": {
+    "subtitle": "记录生活 · 定格美好 · 传递感动",
+    "title": "光影与音符的世界",
+    "description": "这里是摄影、视频、音乐与文字的交汇处",
+    "ctaPrimary": { "text": "浏览作品", "link": "#photos" },
+    "ctaSecondary": { "text": "了解更多", "link": "#about" }
+  },
+  "about": {
+    "gallery": [
+      { "src": "图片URL", "alt": "照片描述" }
+    ],
+    "text": ["段落1", "段落2"],
+    "socialLinks": [
+      { "icon": "wechat", "title": "微信", "url": "#" },
+      { "icon": "douyin", "title": "抖音", "url": "#" }
+    ]
+  }
+}
+```
+
+支持的社交图标：`wechat`（微信）、`douyin`（抖音）
 
 ### 摄影作品 (data/photos.json)
 
@@ -115,7 +145,8 @@ npx serve .
     "image": "https://example.com/article.jpg",
     "date": "2024年3月15日",
     "title": "文章标题",
-    "excerpt": "文章摘要..."
+    "excerpt": "文章摘要...",
+    "md": "assets/writings/my-article.md"
   }
 ]
 ```
@@ -124,7 +155,10 @@ npx serve .
 - `image` - 文章配图 URL
 - `date` - 发布日期
 - `title` - 文章标题
-- `excerpt` - 文章摘要
+- `excerpt` - 文章摘要（列表页显示）
+- `md` - Markdown 文件路径（可选，用于完整文章预览）
+
+点击"继续阅读"会打开预览窗口，加载并解析 Markdown 文件内容。
 
 ## 本地资源
 
@@ -140,8 +174,9 @@ npx serve .
 ## 技术栈
 
 - HTML5
-- CSS3 (CSS Variables, Flexbox, Grid, Animations)
+- CSS3 (CSS Variables, Flexbox, Grid, Animations, Glassmorphism)
 - Vanilla JavaScript (ES6+, Fetch API)
+- marked.js (Markdown 解析)
 - Google Fonts
 - 外部图片/媒体（可替换为本地资源）
 

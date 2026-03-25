@@ -1,0 +1,53 @@
+{
+  "hero": {
+    "subtitle": "记录生活 · 定格美好 · 传递感动",
+    "title": "光影与音符的世界",
+    "description": "这里是摄影、视频、音乐与文字的交汇处<br>每一个作品都是我对世界的独特表达",
+    "ctaPrimary": {
+      "text": "浏览作品",
+      "link": "#photos"
+    },
+    "ctaSecondary": {
+      "text": "了解更多",
+      "link": "#about"
+    }
+  },
+  "about": {
+    "gallery": [
+      {
+        "src": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400",
+        "alt": "照片1"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400",
+        "alt": "照片2"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400",
+        "alt": "照片3"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400",
+        "alt": "照片4"
+      }
+    ],
+    "text": [
+      "你好，我是一名创作者，喜欢用镜头捕捉生活的美好，用音符表达内心的情感，用文字记录思考的痕迹。",
+      "摄影让我学会观察，视频让我学会叙事，音乐让我学会表达，文字让我学会思考。这些创作形式交织在一起，构成了我理解世界的方式。"
+    ],
+    "socialLinks": [
+      {
+        "icon": "wechat",
+        "title": "微信",
+        "url": "#",
+        "qrcode": "https://via.placeholder.com/200x200?text=微信二维码"
+      },
+      {
+        "icon": "douyin",
+        "title": "抖音",
+        "url": "#",
+        "qrcode": "https://via.placeholder.com/200x200?text=抖音二维码"
+      }
+    ]
+  }
+}
